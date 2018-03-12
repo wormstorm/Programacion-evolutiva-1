@@ -9,28 +9,35 @@ public class PoblacionUniversalEstocastica<T> extends Poblacion<T>{
 
 	@Override
 	public void seleccion() {
-		// TODO Auto-generated method stub
-		Random r = new Random();
-		double aux = r.nextDouble()*_puntuacion[0];
-		double c = 1.0/_tam;
-		Cromosoma<T>[] aux_pob = new Cromosoma[_tam];
-		int j=0;
-		for(int i =0;i<_tam;i++) {
-			boolean encontrado = false;
-			while(j<_tam && !encontrado) {
-				if(aux>_punt_acum[j])
-					j++;
-				else {
-					j--;
-					aux_pob[i] = _pob[j];
-					encontrado = true;
-				}
-			}
-			aux += c;
-			if (aux > this._suma_aptitud)
-				aux = _suma_aptitud;
-		}
-		_pob = aux_pob;
+            
+            Random r = new Random();
+            double dist = 1.0/_tam;
+            double marca = r.nextDouble() * dist;
+            marca = marca + dist*(_tam-1);
+            
+            int j=_tam-1;
+            Cromosoma<T>[] pob_aux = new Cromosoma[_tam];
+            boolean ent = false;
+            for (int i = _tam-1; i>=0; i--){
+                ent = false;
+                while (j>=0 && !ent){
+                    
+                    if (_punt_acum[j]/_suma_aptitud <= marca){
+                        if (j == 0 || _punt_acum[j-1]/_suma_aptitud <= marca){
+                            pob_aux[i] = _pob[j];
+                            marca = marca-dist;
+                            ent = true;
+                            j++;
+                        }
+                    }
+                    j--;
+                    if (i==0 && !ent && j==-1)
+                        pob_aux[0] = _pob[0];
+                }
+                                
+            }
+            
+            _pob = pob_aux;
 	}
 
 }
