@@ -93,7 +93,7 @@ public abstract class Poblacion<T>{
 	public double getMejorApt() {
 		return _mejores[_pos_mejor].aptitud();
 	}
-	private int buscarMenor(int tam, Cromosoma[] array) {
+	protected int buscarMenor(int tam, Cromosoma[] array) {
 		int menor_act = 0;
 		for(int i = 1; i < tam;i++)
 			if(array[i].aptitud() < array[menor_act].aptitud())

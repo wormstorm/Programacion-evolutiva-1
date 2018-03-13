@@ -9,13 +9,13 @@ public class AGenetico {
 	private double _mejor;
 	private double _mejorf;
 	
-	public AGenetico(int max_gen, double cruce, double mut, double tol, int tam, String seleccion, String ejercicio)  {
+	public AGenetico(int max_gen, double cruce, double mut, double tol, int tam, String seleccion, String ejercicio, double trunk)  {
 		_num_max_gen = max_gen;
 		_gen_actual = 0;
 		_prob_cruce = cruce;
 		_prob_mut = mut;
 		_tolerancia = tol;
-		_poblacion = FactoriaPoblaciones.getPoblacion(seleccion, tam, ejercicio , _tolerancia);
+		_poblacion = FactoriaPoblaciones.getPoblacion(seleccion, tam, ejercicio , _tolerancia, trunk);
 	}
 	
 	public void ejecutaAG() {
