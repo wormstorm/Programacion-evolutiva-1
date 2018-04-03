@@ -120,4 +120,12 @@ public class AGenetico {
 	public void set_poblacion(Poblacion _poblacion) {
 		this._poblacion = _poblacion;
 	}
+	        public int get_num_fen (){
+            return _num_fen;
+            
+        }
+        
+        public void set_num_fen(int num){
+            _num_fen = num;
+        }
 }
